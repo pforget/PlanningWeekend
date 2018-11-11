@@ -15,7 +15,7 @@ enum level {Begginer,Advanced,Expert};
 @Entity
 public class Sport implements Serializable {
     
-	@Id @GeneratedValue
+	@Id 
     private SportPK sportPK;
     private User user;
 

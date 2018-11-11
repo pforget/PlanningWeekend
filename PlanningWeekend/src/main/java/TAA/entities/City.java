@@ -16,7 +16,7 @@ public class City implements Serializable {
 		this.departmentID = departmentID;
 	}
 
-	@Id @GeneratedValue
+	@Id
 	private CityPK cityPK;
 
 	

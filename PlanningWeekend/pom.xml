@@ -87,7 +87,17 @@
 	    <groupId>org.apache.httpcomponents</groupId>
 	    <artifactId>httpclient</artifactId>
 	    <version>4.5.6</version>
-	</dependency>    
+	</dependency> 
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+	<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+	   <!-- https://mvnrepository.com/artifact/org.json/json -->
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20180813</version>
+	</dependency>
+
+
 	</dependencies>
 
 	<build>

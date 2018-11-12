@@ -13,21 +13,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import TAA.Dao.CityDao;
 import TAA.entities.City;
+import TAA.entities.CityPK;
 
 @RestController
-@Transactional
+//@Transactional
 @RequestMapping("/City")
 //@Api(value= "PersonServiceApi", produces= MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class CityService {
 	@Autowired
 	private CityDao dao;
-	@RequestMapping("/All")
+	@RequestMapping(value="/all",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public List<City> AllCities() {
 		return dao.findAll();
@@ -45,8 +47,8 @@ public class CityService {
 	@DeleteMapping("/delete")
 	    public void deleteCity(@RequestBody City c) {
 	        dao.delete(c);    }
-/*	@GetMapping(value = "/name/{name}")
-    public List<City> findByname(@PathVariable("name") String name) {
+	@GetMapping(value = "/{name}")
+    public List<City> getcity(@PathVariable("name") String name) {
         return dao.findByName(name);
-    }*/
+    }
 }

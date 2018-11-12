@@ -22,13 +22,13 @@ import TAA.entities.Department;
 
 @RestController
 @Transactional
-@RequestMapping("/departmentService")
+@RequestMapping("/department")
 //@Api(value= "PersonServiceApi", produces= MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class DepartmentService {
 	@Autowired
 	private DepartmentDao dao;
-	@RequestMapping("/Alldepartment")
+	@RequestMapping("/All")
 	@ResponseBody
 	public List<Department> AllConditions() {
 		return dao.findAll();

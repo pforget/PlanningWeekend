@@ -41,7 +41,7 @@ public class SportService<level> {
 	}
 	@GetMapping(value = "/id/{id}")
     public Object getSport(String name, level level) {
-		 return dao.findBylevel(name,level);
+		 return dao.find(name,level);
     }
 	@DeleteMapping("/Sport/delete")
 	    public void deleteSport(@RequestBody Sport s) {

@@ -13,7 +13,6 @@ import TAA.entities.Location;
 import TAA.entities.Sport;
 @Transactional
 public interface UserDao extends JpaRepository<User, Long>{
-	@Query("select count (u) from User as u")
-	public User findById(@Param("id") int i);
+
 	
 }

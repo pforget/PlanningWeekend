@@ -21,32 +21,32 @@ import TAA.entities.City;
 
 @RestController
 @Transactional
-@RequestMapping("/cityService")
+@RequestMapping("/City")
 //@Api(value= "PersonServiceApi", produces= MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class CityService {
 	@Autowired
 	private CityDao dao;
-	@RequestMapping("/Allcities")
+	@RequestMapping("/All")
 	@ResponseBody
 	public List<City> AllCities() {
 		return dao.findAll();
 	}  
 	
-	@PostMapping("/city/add")
+	@PostMapping("/add")
 	public void saveCity(@RequestBody City c) {
 		 dao.save(c);
 	}
-	@RequestMapping("/Citybypostalcode")
+/*	@RequestMapping("/Citybypostalcode")
 	@ResponseBody
 	public List<City> CityByPostalCode(int postalCode) {
 		return dao.findByPostalCode(postalCode);
-	}
-	@DeleteMapping("/city/delete")
+	}*/
+	@DeleteMapping("/delete")
 	    public void deleteCity(@RequestBody City c) {
 	        dao.delete(c);    }
-	@GetMapping(value = "/name/{name}")
+/*	@GetMapping(value = "/name/{name}")
     public List<City> findByname(@PathVariable("name") String name) {
         return dao.findByName(name);
-    }
+    }*/
 }

@@ -16,9 +16,8 @@ public class City implements Serializable {
 		this.departmentID = departmentID;
 	}
 
-	@Id
+	@EmbeddedId
 	private CityPK cityPK;
-
 	
 	private Department departmentID;
 

@@ -36,10 +36,10 @@ public class RegionService {
 	public void saveRegion(@RequestBody Region c) {
 		 dao.save(c);
 	}
-	@GetMapping(value = "/person/{name}")
+	/*@GetMapping(value = "/person/{name}")
     public boolean existsByName(@PathVariable("nameame") String name) {
         return dao.existByName(name);
-    }
+    }*/
 	@DeleteMapping("/region/delete")
 	    public void deleteRegion(@RequestBody Region c) {
 	        dao.delete(c);    }

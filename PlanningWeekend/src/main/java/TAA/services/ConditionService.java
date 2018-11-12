@@ -22,29 +22,29 @@ import TAA.entities.Condition;
 
 @RestController
 @Transactional
-@RequestMapping("/conditionService")
+@RequestMapping("/Condition")
 //@Api(value= "PersonServiceApi", produces= MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class ConditionService {
 	@Autowired
 	private ConditionDao dao;
-	@RequestMapping("/Allcondition")
+	@RequestMapping("/All")
 	@ResponseBody
 	public List<Condition> AllConditions() {
 		return dao.findAll();
 	}  
 	
-	@PostMapping("/condition/add")
+	@PostMapping("/add")
 	public void saveCondition(@RequestBody Condition c) {
 		 dao.save(c);
 	}
-	@GetMapping(value = "/id/{id}")
+	@GetMapping(value = "/{id}")
     public Condition getCondition(@PathVariable("id") int id) {
         @SuppressWarnings("unchecked")
 		Optional<Condition> condition = (Optional<Condition>) ConditionDao.findById(id);
         return condition.get();
     }
-	@DeleteMapping("/condition/delete")
+	@DeleteMapping("/delete")
 	    public void deleteCondition(@RequestBody Condition c) {
 	        dao.delete(c);    }
 	

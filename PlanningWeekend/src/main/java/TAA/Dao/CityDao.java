@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import TAA.entities.City;
+import TAA.entities.CityPK;
 @Transactional
 public interface CityDao extends JpaRepository<City, String>{
-	public List<City> findByPostalCode(int postalCode);
-	public List<City> findByName(String name);
+	public List<City> findBycityPK(CityPK id);
 }

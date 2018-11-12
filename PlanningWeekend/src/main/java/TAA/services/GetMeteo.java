@@ -12,7 +12,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 public class GetMeteo {
 	
-	public static void GetByCity(String cityName) {
+	public static String GetByCity(String cityName) {
 		
 		String url = "https://www.prevision-meteo.ch/services/json/";
 		
@@ -40,10 +40,18 @@ public class GetMeteo {
 			}
 			
 			client.close();
+
+			return br.toString();
+			
 		}
 		catch(IOException e) {
 			e.printStackTrace();
+			return null;
 		}	
+	}
+	
+	public void GetConcarnMeteo() {
+		GetByCity("concarneau");
 	}
 
 }

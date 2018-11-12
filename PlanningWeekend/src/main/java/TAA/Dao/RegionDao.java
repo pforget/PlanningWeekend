@@ -10,5 +10,5 @@ import TAA.entities.Region;
 public interface RegionDao extends JpaRepository<Region, String>{
 	@Query ("select r from Region as r where r.name = :name")
 	public List<Region> findByName(String name);
-	public Boolean existByName(String name);
+
 }

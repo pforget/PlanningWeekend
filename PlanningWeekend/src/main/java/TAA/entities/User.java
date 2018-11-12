@@ -26,21 +26,16 @@ public class User implements Serializable {
 		this.favoriteSports = favoriteSports;
 		this.favoriteLocations = favoriteLocations;
 	}
-	@Id @GeneratedValue
 	private int id;
 	private String username;
 	private String password;
 	private String email;
 
 	private String name;
-	@OneToMany(targetEntity=Sport.class, mappedBy="user")
 	
 	private List<Sport> favoriteSports;
     
-    @OneToMany(targetEntity=Location.class, mappedBy="user")
-    
     private List<Location> favoriteLocations;
-    @OneToMany(targetEntity=Proposition.class, mappedBy="user")
     
     private List<Proposition> propositions;
 	
@@ -48,6 +43,7 @@ public class User implements Serializable {
     }
 
     
+	@Id @GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -65,7 +61,7 @@ public class User implements Serializable {
 	}
 
 
-	@Column(nullable = false)
+//	@Column(nullable = false)
     public String getUsername() {
 		return username;
 	}
@@ -74,7 +70,7 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public String getPassword() {
 		return password;
 	}
@@ -93,7 +89,7 @@ public class User implements Serializable {
 
 
 	
-	@OneToMany
+	@ManyToMany
 	public List<Sport> getFavoriteSports() {
 		return favoriteSports;
 	}
@@ -102,7 +98,7 @@ public class User implements Serializable {
 		this.favoriteSports = favoriteSports;
 	}
 
-	
+	@ManyToMany
 	public List<Location> getFavoriteLocations() {
 		return favoriteLocations;
 	}

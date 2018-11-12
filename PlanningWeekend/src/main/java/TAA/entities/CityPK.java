@@ -21,7 +21,7 @@ public class CityPK implements Serializable {
 	private String name;
 	private int postalCode;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -30,7 +30,7 @@ public class CityPK implements Serializable {
 		this.name = name;
 	}
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	public int getPostalCode() {
 		return postalCode;
 	}

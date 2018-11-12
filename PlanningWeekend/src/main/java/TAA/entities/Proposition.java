@@ -15,11 +15,11 @@ import javax.persistence.Table;
 @Table(name = "Proposition")
 public class Proposition implements Serializable {
 	
-	@Id @GeneratedValue
-	private PropositionPK propositionPK;
-	private User user;
+	private long id;
+	private Sport sport;
+	private Location location;
+		//private User user;
 	private boolean available;
-	@ManyToMany
 	private List<User> users;
 	
 	public Proposition() {
@@ -27,24 +27,25 @@ public class Proposition implements Serializable {
 	}
 
 	public Proposition(Sport sport, Location location, boolean available) {
-		this.propositionPK = new PropositionPK(sport, location);
 		this.available = available;
+		this.sport = sport;
+		this.location = location;
 	}
 	@ManyToOne	
 	public Sport getSport() {
-		return propositionPK.getSport();
+		return sport;
 	}
 
 	public void setSport(Sport sport) {
-		propositionPK.setSport(sport);
+		this.sport = sport;
 	}
 	@ManyToOne
 	public Location getLocation() {
-		return propositionPK.getLocation();
+		return location;
 	}
 
 	public void setLocation(Location location) {
-		propositionPK.setLocation(location);
+		this.location = location;
 	}
 
 	public boolean isAvailable() {
@@ -55,15 +56,7 @@ public class Proposition implements Serializable {
 		this.available = available;
 	}
 
-	public PropositionPK getPropositionPK() {
-		return propositionPK;
-	}
-
-	public void setPropositionPK(PropositionPK propositionPK) {
-		this.propositionPK = propositionPK;
-	}
-
-	
+	@ManyToMany
 	public List<User> getUsers() {
 		return users;
 	}
@@ -72,12 +65,21 @@ public class Proposition implements Serializable {
 		this.users = users;
 	}
 
-	public User getUser() {
+	@Id @GeneratedValue
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/*public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}
+	}*/
 }
 

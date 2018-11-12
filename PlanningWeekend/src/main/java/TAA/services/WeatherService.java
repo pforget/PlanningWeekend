@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,28 +20,28 @@ import TAA.entities.Region;
 import TAA.entities.Weather;
 
 @RestController
-@Transactional
-@RequestMapping("/WeatherService")
+//@Transactional
+@RequestMapping("/Weathers")
 //@Api(value= "PersonServiceApi", produces= MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class WeatherService {
 	@Autowired
 	private WeatherDao dao;
-	@RequestMapping("/AllWeathers")
+	@RequestMapping(value="/all",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public List<Weather> AllWeathers() {
 		return dao.findAll();
 	}  
 	
-	@PostMapping("/Weather/add")
+	@PostMapping("/add")
 	public void saveWeather(@RequestBody Weather w) {
 		 dao.save(w);
 	}
 	@GetMapping(value = "/id/{id}")
-    public Weather getWeather(@PathVariable("id") int id) {
-		 return dao.findByID(id);
+    public Weather getWeather(@PathVariable("id") String id) {
+		 return dao.findOne(Long.valueOf(id));
     }
-	@DeleteMapping("/Weather/delete")
+	@DeleteMapping("/delete")
 	    public void deleteWeather(@RequestBody Weather w) {
 	        dao.delete(w);    }
 	

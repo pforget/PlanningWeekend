@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,28 +21,28 @@ import TAA.entities.Proposition;
 import TAA.entities.Sport;
 
 @RestController
-@Transactional
-@RequestMapping("/PropositionService")
+//@Transactional
+@RequestMapping("/Propositions")
 //@Api(value= "PersonServiceApi", produces= MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class PropositionService {
 	@Autowired
 	private PropositionDao dao;
-	@RequestMapping("/AllPropositions")
+	@RequestMapping(value="/all",method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public List<Proposition> AllPropositions() {
 		return dao.findAll();
 	}  
 	
-	@PostMapping("/Proposition/add")
+	@PostMapping("/add")
 	public void saveProposition(@RequestBody Proposition p) {
 		 dao.save(p);
 	}
-	@GetMapping(value = "/id/{id}")
+	@GetMapping(value = "/{id}")
     public Proposition getProposition(Sport s, Location l) {
 		 return dao.findByID(s,l);
     }
-	@DeleteMapping("/Proposition/delete")
+	@DeleteMapping("/delete")
 	    public void deleteProposition(@RequestBody Proposition p) {
 	        dao.delete(p);    }
 	

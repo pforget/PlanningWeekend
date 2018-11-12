@@ -39,7 +39,7 @@ public class LocationService {
 		 dao.save(l);
 	}
 	@GetMapping(value = "/{id}")
-    public Location getLocation(@PathVariable("id") int id) {
+    public Location getLocation(@PathVariable("id") String id) {
 		 return dao.findOne(Long.valueOf(id));
     }
 	@DeleteMapping("/delete")

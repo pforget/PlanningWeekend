@@ -88,7 +88,6 @@ public class Location implements Serializable {
 		this.region = region;
 	}
 
-	@ManyToOne
 	public Weather getWeather() {
 		return weather;
 	}

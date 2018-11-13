@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import TAA.Dao.DepartmentDao;
 import TAA.Dao.LocationDao;
+import TAA.entities.City;
 import TAA.entities.Department;
 import TAA.entities.Location;
 
@@ -46,4 +47,13 @@ public class LocationService {
 	    public void deleteLocation(@RequestBody Location l) {
 	        dao.delete(l);    }
 	
+	@RequestMapping(value="/{name}",method=RequestMethod.GET, produces="application/json")
+	@ResponseBody
+	public Location getByCityName(String cityName) {
+		return dao.findByCityName(cityName);
+	}
+	
+	public Location getByCity(City city) {
+		return dao.findByCity(city.getName(), city.getPostalCode());
+	}
 }

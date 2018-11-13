@@ -18,11 +18,7 @@ public class Weather implements Serializable {
 	Gel; 
 
 }*/
-	
-	public Weather() {
 		
-	}
-	
 	public Weather(float temperature, float wind, String sunshine, String icon) {
 		this.temperature = temperature;
 		this.wind = wind;

@@ -9,17 +9,23 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import TAA.entities.Location;
+import TAA.entities.Weather;
+
 @RestController
 @RequestMapping("/meteo")
 @CrossOrigin
 public class GetMeteo {
+	@Autowired 
+	LocationService loc;
 	
-	public static void GetByCity(String cityName) {
+	public static Weather GetByCity(String cityName) {
 		
 		String url = "https://www.prevision-meteo.ch/services/json/";
 		
@@ -68,26 +74,30 @@ public class GetMeteo {
 
 			System.out.println(h10);
 
-			String Condition = h10.getString("CONDITION");
+			String condition = h10.getString("CONDITION");
 			int winSpeed = h10.getInt("WNDSPD10m");
 			int temp = h10.getInt("TMP2m");//.toString();
 			String image = h10.getString("ICON");
+			
+			Weather weather = new Weather(temp, winSpeed, condition, image);
 
 
 			client.close();
-			return;
+			return weather;
 		//	return h10; //br.toString(); // json.getAsString("city_info");
 			
 		}
 		catch(IOException e) {
 			e.printStackTrace();
-			return;
+			return null;
 		}	
 	}
 	
 	@RequestMapping(value="/concarn",method=RequestMethod.GET, produces="application/json")
 	public void GetConcarnMeteo() {
-		 GetByCity("concarneau");
+		 Weather concarnWeather = GetByCity("concarneau");
+		 Location concarneau = loc.getByCityName("concarneau");
+		 concarneau.setWeather(concarnWeather);
 		 return;
 	}
 

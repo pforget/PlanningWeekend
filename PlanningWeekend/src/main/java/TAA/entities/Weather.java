@@ -3,15 +3,10 @@ package TAA.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 public class Weather implements Serializable {
 	
 
-public enum Sunshine {
+/*public enum Sunshine {
 
 	FortementEnsoleillé,
 	Ensoleillé,
@@ -22,36 +17,27 @@ public enum Sunshine {
 	Grêle,
 	Gel; 
 
-}
+}*/
 	
 	public Weather() {
 		
 	}
 	
-	public Weather(int id, float temperature, float wind, Sunshine sunshine) {
-		this.id = id;
+	public Weather(float temperature, float wind, String sunshine, String icon) {
 		this.temperature = temperature;
 		this.wind = wind;
 		this.sunshine = sunshine;
+		this.icon = icon;
 	}
-
-	private int id;
 
 	private float temperature;
 	
 	private float wind;
 	
-	private Sunshine sunshine;
+	private String sunshine;
 	
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	private String icon;
+	
 
 	public float getTemperature() {
 		return temperature;
@@ -69,12 +55,20 @@ public enum Sunshine {
 		this.wind = wind;
 	}
 
-	public Sunshine getSunshine() {
+	public String getSunshine() {
 		return sunshine;
 	}
 
-	public void setSunshine(Sunshine sunshine) {
+	public void setSunshine(String sunshine) {
 		this.sunshine = sunshine;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	
 }

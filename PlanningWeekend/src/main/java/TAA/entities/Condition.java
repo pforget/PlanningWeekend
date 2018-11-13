@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import TAA.entities.Weather.Sunshine;
-
 @Entity
 public class Condition implements Serializable {
 	
@@ -21,7 +19,7 @@ public class Condition implements Serializable {
 	private double maxWindCondition;
 	private double maxTemperature;
 //	private double maxPluviometry;
-	private ArrayList<Sunshine> toleratedSunshine;
+	private ArrayList<String> toleratedSunshine;
 	
 	@Id
 	@GeneratedValue
@@ -80,24 +78,24 @@ public class Condition implements Serializable {
 */
 	
 	@Column(nullable = false)
-	public ArrayList<Sunshine> getToleratedSunshine() {
+	public ArrayList<String> getToleratedSunshine() {
 		return toleratedSunshine;
 	}
-	public void setToleratedSunshine(ArrayList<Sunshine> toleratedSunshine) {
+	public void setToleratedSunshine(ArrayList<String> toleratedSunshine) {
 		this.toleratedSunshine = toleratedSunshine;
 	}
 	
 	public boolean isFulfilled(Weather weather) {
 		double temperature = weather.getTemperature();
 		double windSpeed = weather.getWind();
-		Sunshine sunshine = weather.getSunshine();
+		String sunshine = weather.getSunshine();
 		
 		return
 				temperature >= minTemperature
 				&& temperature <= maxTemperature
 				&& windSpeed >= minWindCondition
 				&& windSpeed <= maxWindCondition
-				&& toleratedSunshine.contains(weather.getSunshine())
+				&& toleratedSunshine.contains(sunshine)
 				;
 	}
 

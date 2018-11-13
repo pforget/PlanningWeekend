@@ -71,8 +71,7 @@ public class GetMeteo {
 			String Condition = h10.getString("CONDITION");
 			int winSpeed = h10.getInt("WNDSPD10m");
 			int temp = h10.getInt("TMP2m");//.toString();
-			System.out.println(Condition);
-			System.out.println(temp);
+			String image = h10.getString("ICON");
 
 
 			client.close();

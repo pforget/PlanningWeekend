@@ -56,4 +56,6 @@ public class LocationService {
 	public Location getByCity(City city) {
 		return dao.findByCity(city.getName(), city.getPostalCode());
 	}
+	
+
 }

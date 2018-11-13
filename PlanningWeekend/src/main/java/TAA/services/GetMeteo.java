@@ -3,6 +3,7 @@ package TAA.services;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import TAA.entities.Location;
 import TAA.entities.Weather;
+import antlr.collections.List;
 
 @RestController
 @RequestMapping("/meteo")
@@ -100,6 +102,16 @@ public class GetMeteo {
 		 concarneau.setWeather(concarnWeather);
 		 loc.saveLocation(concarneau);
 		 return;
+	}
+	
+	public void UpdateAllWeather() {
+		ArrayList<Location> allLocation = (ArrayList<Location>) loc.AllLocations();
+		for(Location l : allLocation) {
+			String cityName = l.getCity().getName();
+			Weather w = GetByCity(cityName);
+			l.setWeather(w);
+			loc.saveLocation(l);
+		}
 	}
 
 }

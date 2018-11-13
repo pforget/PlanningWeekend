@@ -16,7 +16,10 @@ public class Weather implements Serializable {
 	Neige,
 	Grêle,
 	Gel; 
-
+    HourlyDatadata:
+    "Nuit nuageuse" "Stratus se dissipant"
+    "Nuit claire et stratus" "Stratus"
+    "Nuit claire" "Faiblement nuageux" 	"Ensoleillé" "Eclaircies" "Nuit bien dégagée" "Nuit légèrement voilée"
 }*/
 		
 	public Weather(float temperature, float wind, String sunshine, String icon) {

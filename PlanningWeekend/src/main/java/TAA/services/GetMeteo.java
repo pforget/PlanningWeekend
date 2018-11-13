@@ -98,6 +98,7 @@ public class GetMeteo {
 		 Weather concarnWeather = GetByCity("concarneau");
 		 Location concarneau = loc.getByCityName("concarneau");
 		 concarneau.setWeather(concarnWeather);
+		 loc.saveLocation(concarneau);
 		 return;
 	}
 

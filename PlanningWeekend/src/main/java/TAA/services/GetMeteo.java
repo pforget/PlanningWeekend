@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class GetMeteo {
 	
-	public static String GetByCity(String cityName) {
+	public static void GetByCity(String cityName) {
 		
 		String url = "https://www.prevision-meteo.ch/services/json/";
 		
@@ -52,23 +52,44 @@ public class GetMeteo {
 			}			
 			JSONObject json = new JSONObject(sb.toString());
 			System.out.println(json);
-			System.out.println("fdsfs");
-			System.out.println(json.get("city_info").toString());
 			//json.writeJSONString(sb);
-			client.close();
+			JSONObject wenInfo = (JSONObject)json.get("fcst_day_4"); //J+4 because we call this wednersday
+			System.out.println("wednersday");
 
-			return br.toString(); // json.getAsString("city_info");
+			System.out.println(wenInfo.toString());
+			JSONObject hourlyData = (JSONObject) wenInfo.get("hourly_data");
+			System.out.println("byhour");
+
+			System.out.println(hourlyData);
+
+			JSONObject h10 = (JSONObject) hourlyData.get("10H00");
+			
+			System.out.println("10h");
+
+			System.out.println(h10);
+
+			String Condition = h10.getString("CONDITION");
+			int winSpeed = h10.getInt("WNDSPD10m");
+			int temp = h10.getInt("TMP2m");//.toString();
+			System.out.println(Condition);
+			System.out.println(temp);
+
+
+			client.close();
+			return;
+		//	return h10; //br.toString(); // json.getAsString("city_info");
 			
 		}
 		catch(IOException e) {
 			e.printStackTrace();
-			return null;
+			return;
 		}	
 	}
 	
 	@RequestMapping(value="/concarn",method=RequestMethod.GET, produces="application/json")
-	public String GetConcarnMeteo() {
-		return GetByCity("concarneau");
+	public void GetConcarnMeteo() {
+		 GetByCity("concarneau");
+		 return;
 	}
 
 }

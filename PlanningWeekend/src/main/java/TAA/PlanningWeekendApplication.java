@@ -33,6 +33,6 @@ UserDao userDao;
 		user.setUsername("ADMIN");
 		user.setPassword("ADMIN");
 
-		//userDao.save(user);
+		userDao.save(user);
 }
 }

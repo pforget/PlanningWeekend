@@ -77,7 +77,7 @@ public class PropositionService {
 		}
 	}
 	
-	@Autowired
+	@PostMapping("/addOrUpdate")
 	public void createOrUpdateProp(@RequestBody Sport s, @RequestBody Location l, long idUser) {
 		Proposition p = getProposition(s, l);
 		if(p == null) {

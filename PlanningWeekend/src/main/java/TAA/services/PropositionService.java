@@ -1,5 +1,6 @@
 package TAA.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import TAA.entities.Condition;
 import TAA.entities.Location;
 import TAA.entities.Proposition;
 import TAA.entities.Sport;
+import TAA.entities.User;
 import TAA.entities.Weather;
 
 @RestController
@@ -31,6 +33,9 @@ import TAA.entities.Weather;
 public class PropositionService {
 	@Autowired
 	private PropositionDao dao;
+	
+	@Autowired 
+	UserService user;
 	
 	@Autowired
 	GetMeteo getMeteo;
@@ -69,6 +74,25 @@ public class PropositionService {
 			Weather weather = proposition.getLocation().getWeather();
 			Condition condition = proposition.getSport().getWeatherCondition();
 			proposition.setAvailable(condition.isFulfilled(weather));
+		}
+	}
+	
+	@Autowired
+	public void createOrUpdateProp(@RequestBody Sport s, @RequestBody Location l, long idUser) {
+		Proposition p = getProposition(s, l);
+		if(p == null) {
+			Proposition newProp = new Proposition();
+			newProp.setLocation(l);
+			newProp.setSport(s);
+			User u = user.getUserById(idUser);
+			ArrayList<User> userList = new ArrayList<User>();
+			newProp.setUsers(userList);
+			dao.save(newProp);
+		}
+		else {
+			ArrayList<User> userList = (ArrayList<User>) p.getUsers();
+			p.setUsers(userList);
+			dao.save(p);
 		}
 	}
 	

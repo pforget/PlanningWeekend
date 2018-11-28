@@ -3,6 +3,7 @@ package TAA.services;
 
 
 import TAA.Dao.UserDao;
+import TAA.entities.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,5 +34,10 @@ public class UserService implements UserDetailsService {
 
         return user;
     }
+
+	public User getUserById(long idUser) {
+		return userRepository.findOne(idUser);
+		
+	}
 
 }
